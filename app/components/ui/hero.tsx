@@ -1,10 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Icon } from "@iconify/react";
+import Link from "next/link";
 
 export default function Hero() {
     return (
         <>
-            <h1 className="text-5xl md:text-7xl font-semibold text-white tracking-tight mb-6 leading-[1.1]">
+            <h1 className="text-5xl md:text-7xl font-semibold text-white tracking-tight mb-6 leading-[1.1] drop-shadow-[1.2px_1.2px_100.2px_rgba(183,203,248,1)]">
                 Grabación de{" "}
                 <span className="relative inline-flex items-center">
                     <img
@@ -30,11 +31,11 @@ export default function Hero() {
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-20">
-                <Button variant="primary" size="xl" className="text-xl">
-                    <div className="size-9 rounded-full bg-white flex items-center justify-center">
+                <Button asChild variant="primary" size="xl" className="text-xl">
+                    <Link href="/editor"><div className="size-9 rounded-full bg-white flex items-center justify-center">
                         <Icon icon="fluent:screenshot-record-16-regular" className="size-7 text-red-500" />
                     </div>
-                    Empezar a grabar
+                        Empezar a grabar</Link>
                 </Button>
             </div>
         </>

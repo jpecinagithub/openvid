@@ -49,12 +49,13 @@ export default function Header() {
         </div>
 
         <div className="flex items-center gap-2 sm:gap-4">
-          <Button variant="outline" asChild>
+          <Button asChild variant="outline">
             <Link href="/login">Iniciar sesión</Link>
           </Button>
-          <Button variant="primary" className="px-4" size="sm">
-            Empezar a grabar
-            <Icon icon="solar:arrow-right-linear" width="16" className="hidden sm:flex" />
+          <Button asChild variant="primary">
+            <Link href="/editor">Empezar a grabar
+              <Icon icon="solar:arrow-right-linear" width="16" className="hidden sm:flex" />
+            </Link>
           </Button>
         </div>
       </div>
