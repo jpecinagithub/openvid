@@ -1,0 +1,6 @@
+export * from './video.types';
+export * from './editor.types';
+export * from './recording.types';
+export * from './background.types';
+export * from './zoom.types';
+export * from './mockup.types';

@@ -1,0 +1,26 @@
+import { ZoomFragment } from "./zoom.types";
+
+export interface TrimRange {
+    start: number;
+    end: number;
+}
+
+export interface TimelineProps {
+    videoDuration: number;
+    currentTime: number;
+    onSeek: (time: number) => void;
+    videoUrl?: string | null;
+    zoomLevel: number;
+    isDraggingPlayhead?: boolean;
+    onDragStart?: () => void;
+    onDragEnd?: () => void;
+    trimRange: TrimRange;
+    onTrimChange: (range: TrimRange) => void;
+    // Zoom props
+    zoomFragments?: ZoomFragment[];
+    selectedZoomFragmentId?: string | null;
+    onSelectZoomFragment?: (fragmentId: string | null) => void;
+    onAddZoomFragment?: (startTime: number) => void;
+    onUpdateZoomFragment?: (fragmentId: string, updates: Partial<ZoomFragment>) => void;
+    onActivateZoomTool?: () => void;
+}
