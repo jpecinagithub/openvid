@@ -165,30 +165,29 @@
 
   }
 }
-
 @theme {
   --ease-elegant: cubic-bezier(0.16, 1, 0.3, 1);
-  --gradient-radial-primary: radial-gradient(circle at center, #00A3FF 0%, #0057FF 100%);
+  --shadow-glow: drop-shadow(1.2px 1.2px 100.2px rgba(183,203,248,1));
 
   @keyframes reveal {
     from {
       opacity: 0;
       transform: translateY(20px) scale(0.98);
-      filter: blur(8px);
+      filter: blur(8px) var(--shadow-glow);
     }
 
     to {
       opacity: 1;
       transform: translateY(0) scale(1);
-      filter: blur(0);
+      filter: blur(0) var(--shadow-glow);
     }
   }
 }
 
 @utility animate-reveal {
   animation: reveal 0.8s var(--ease-elegant) forwards;
-  opacity: 0;
 }
+
 
 button {
   cursor: pointer;
@@ -247,6 +246,7 @@ button {
   corner-shape: squircle;
   border-radius: 20px;
 }
+
 .hero-perspective-container {
   perspective: 1500px;
 }
