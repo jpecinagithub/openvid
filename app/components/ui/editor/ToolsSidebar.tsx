@@ -9,13 +9,15 @@ import { TooltipAction } from "@/components/ui/tooltip-action";
 interface ExtendedToolsSidebarProps extends ToolsSidebarProps {
     onVideoUpload?: (file: File) => void;
     isUploading?: boolean;
+    isCursorEnabled?: boolean;
 }
 
 export function ToolsSidebar({
     activeTool,
     onToolChange,
     onVideoUpload,
-    isUploading = false
+    isUploading = false,
+    isCursorEnabled = false 
 }: ExtendedToolsSidebarProps) {
     const fileInputRef = useRef<HTMLInputElement>(null);
     const [isDragging, setIsDragging] = useState(false);
@@ -35,19 +37,19 @@ export function ToolsSidebar({
     const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
         e.preventDefault();
         e.stopPropagation();
-        if (!isDragging) setIsDragging(true); // Activamos el estado visual
+        if (!isDragging) setIsDragging(true);
     };
 
     const handleDragLeave = (e: React.DragEvent<HTMLDivElement>) => {
         e.preventDefault();
         e.stopPropagation();
-        setIsDragging(false); // Desactivamos el estado visual al salir
+        setIsDragging(false);
     };
 
     const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
         e.preventDefault();
         e.stopPropagation();
-        setIsDragging(false); // Desactivamos el estado visual al soltar
+        setIsDragging(false);
 
         if (isUploading) return;
 
@@ -70,13 +72,32 @@ export function ToolsSidebar({
                     background: 'radial-gradient(circle at 50% 30%, #2a2a2a 0%, #131313 64%)',
                 }}
             >
-                <div className="flex flex-col gap-4 w-full overflow-y-auto p-2">
+                <div className="flex flex-col gap-4 w-full overflow-y-auto px-2 custom-scrollbar mask-y-from-85% mask-y-to-99%">
+                    
+                    <div className="shrink-0 h-4" aria-hidden="true" />
+
                     <SidebarTool
                         icon="solar:gallery-wide-linear"
                         label="Fondo"
                         isActive={activeTool === "screenshot"}
                         onClick={() => onToolChange("screenshot")}
                     />
+                    <SidebarTool
+                        icon="hugeicons:ai-browser"
+                        label="Mockup"
+                        isActive={activeTool === "mockup"}
+                        onClick={() => onToolChange("mockup")}
+                    />
+
+                    <SidebarTool
+                        icon="solar:cursor-bold-duotone"
+                        label="Cursor"
+                        isActive={activeTool === "cursor"}
+                        onClick={() => onToolChange("cursor")}
+                        badge={!isCursorEnabled ? "Pronto" : undefined}
+                        disabled={!isCursorEnabled}
+                    />
+
                     <SidebarTool
                         label="Elementos"
                         isActive={activeTool === "elements"}
@@ -113,14 +134,9 @@ export function ToolsSidebar({
                         onClick={() => onToolChange("zoom")}
                     />
 
-                    <SidebarTool
-                        icon="hugeicons:ai-browser"
-                        label="Mockup"
-                        isActive={activeTool === "mockup"}
-                        onClick={() => onToolChange("mockup")}
-                    />
-
+                    <div className="shrink-0 h-4" aria-hidden="true" />
                 </div>
+                
                 <div
                     className="w-full p-2 relative flex flex-col items-center shrink-0 group"
                     onDragOver={handleDragOver}

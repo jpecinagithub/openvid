@@ -4,6 +4,7 @@ import { ZoomFragment } from "./zoom.types";
 import { MockupConfig } from "./mockup.types";
 import type { CanvasElement } from "./canvas-elements.types";
 import type { UploadedAudio, AudioTrack } from "./audio.types";
+import type { CursorConfig, CursorRecordingData } from "./cursor.types";
 
 export interface ControlPanelProps {
     activeTool: Tool;
@@ -60,4 +61,9 @@ export interface ControlPanelProps {
     onMasterVolumeChange?: (volume: number) => void;
     videoDuration?: number;
     videoHasAudioTrack?: boolean;
+    // Cursor props
+    cursorConfig?: CursorConfig;
+    cursorData?: CursorRecordingData;
+    isRecordedVideo?: boolean;
+    onCursorConfigChange?: (config: Partial<CursorConfig>) => void;
 }

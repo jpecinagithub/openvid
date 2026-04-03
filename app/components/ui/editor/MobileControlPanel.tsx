@@ -3,7 +3,6 @@
 import { Suspense } from "react";
 import { Icon } from "@iconify/react";
 import * as Dialog from "@radix-ui/react-dialog";
-import type { Tool } from "@/types";
 import type { ControlPanelProps } from "@/types/control-panel.types";
 import { LoadingSpinner } from "@/app/components/ui/LoadingSpinner";
 
@@ -12,7 +11,6 @@ interface MobileControlPanelProps extends ControlPanelProps {
     onClose: () => void;
 }
 
-// Dynamic imports
 import dynamic from "next/dynamic";
 
 const ControlPanel = dynamic(
@@ -46,6 +44,7 @@ export function MobileControlPanel({
                                     controlPanelProps.activeTool === "elements" ? "mdi:shape-outline" :
                                     controlPanelProps.activeTool === "audio" ? "mdi:volume-high" :
                                     controlPanelProps.activeTool === "zoom" ? "iconamoon:zoom-in-bold" :
+                                    controlPanelProps.activeTool === "cursor" ? "ph:cursor-fill" :
                                     "hugeicons:ai-browser"
                                 } 
                                 width="20" 
@@ -55,6 +54,7 @@ export function MobileControlPanel({
                             {controlPanelProps.activeTool === "audio" && "Audio"}
                             {controlPanelProps.activeTool === "zoom" && "Zoom"}
                             {controlPanelProps.activeTool === "mockup" && "Mockup"}
+                            {controlPanelProps.activeTool === "cursor" && "Cursor"}
                         </Dialog.Title>
                         <Dialog.Close asChild>
                             <button

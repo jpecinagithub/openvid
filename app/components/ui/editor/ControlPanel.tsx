@@ -11,6 +11,8 @@ import { lazy, Suspense } from "react";
 import { ElementsMenuSkeleton, ZoomGlobalConfigSkeleton, MockupMenuSkeleton, WallpaperSkeleton, BackgroundColorSkeleton, ImageBackgroundSkeleton, ZoomFragmentEditorSkeleton, AudioMenuSkeleton } from "../Skeleton";
 import { ElementsMenu } from "./ElementsMenu";
 import { TooltipAction } from "@/components/ui/tooltip-action";
+import CursorMenu from "./CursorMenu";
+import { DEFAULT_CURSOR_CONFIG } from "@/types/cursor.types";
 
 // Lazy load heavy components - only load when needed
 const ImageRecentBackgroundGrid = lazy(() => import("../ImageRecentBackgroundGrid").then(mod => ({ default: mod.ImageRecentBackgroundGrid })));
@@ -86,6 +88,11 @@ export function ControlPanel({
     onMasterVolumeChange,
     videoDuration = 0,
     videoHasAudioTrack = true,
+    // Cursor props
+    cursorConfig = DEFAULT_CURSOR_CONFIG,
+    cursorData,
+    isRecordedVideo = false,
+    onCursorConfigChange,
 }: ExtendedControlPanelProps) {
     return (
         <div className="relative w-full sm:w-[320px] h-screen bg-[#141417] border-r border-white/10 flex flex-col shrink-0">
@@ -227,6 +234,17 @@ export function ControlPanel({
                             />
                         </div>
                     </>
+                )}
+
+                {activeTool === "cursor" && (
+                    <Suspense >
+                        <CursorMenu
+                            cursorConfig={cursorConfig}
+                            onCursorConfigChange={onCursorConfigChange || (() => {})}
+                            cursorData={cursorData}
+                            isRecordedVideo={isRecordedVideo}
+                        />
+                    </Suspense>
                 )}
 
                 {activeTool === "elements" && (

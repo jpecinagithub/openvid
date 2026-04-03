@@ -1,3 +1,4 @@
+import DonationCard from "../components/ui/DonationCard";
 import EditorPreview from "../components/ui/EditorPreview";
 import Hero from "../components/ui/Hero";
 import InteractiveRecordingSteps from "../components/ui/RecordingSteps";
@@ -16,6 +17,12 @@ export default function Home() {
       <section className="w-full py-16">
         <div className="max-w-6xl mx-auto px-6">
           <InteractiveRecordingSteps />
+        </div>
+      </section>
+
+      <section className="py-16 w-full mb-20">
+        <div className="max-w-xl mx-auto px-6">
+          <DonationCard />
         </div>
       </section>
     </div>

@@ -7,7 +7,6 @@ export default function PrivacyPage() {
     return (
         <div className="min-h-screen bg-[#09090B] py-16 px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl mx-auto">
-                {/* Header */}
                 <div className="mb-12">
                     <Link
                         href="/"
@@ -25,7 +24,6 @@ export default function PrivacyPage() {
                     </p>
                 </div>
 
-                {/* Content */}
                 <div className="space-y-10 text-white/70 leading-relaxed">
                     <section>
                         <h2 className="text-xl font-medium text-white mb-4">1. Introducción</h2>
@@ -167,7 +165,6 @@ export default function PrivacyPage() {
                     </section>
                 </div>
 
-                {/* Footer Info */}
                 <div className="mt-16 pt-8 border-t border-white/10">
                     <p className="text-sm text-white/50">
                         Al usar openvid, también aceptas nuestros{" "}

@@ -1,7 +1,6 @@
 'use client';
 import { useEffect, useRef } from 'react';
 import Atropos from 'atropos';
-import 'atropos/css';
 
 export default function EditorPreview() {
   const atroposRef = useRef<HTMLDivElement>(null);
@@ -22,7 +21,7 @@ export default function EditorPreview() {
   }, []);
 
   return (
-    <div className="relative max-w-6xl mx-auto mt-10 sm:mt-0 hero-perspective-container">
+    <div className="relative max-w-6xl mx-auto mt-30 sm:mt-0 hero-perspective-container">
       
       <div className="hero-3d-wrapper relative w-full">
         

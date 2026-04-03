@@ -69,6 +69,7 @@ export default function Header() {
               Ir al editor
             </Link>
           )}
+          <Link href="/donate" target="_blank" className="hover:text-white transition-colors">Donar</Link>
         </div>
 
         <div className="flex items-center gap-2">

@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
+@import 'atropos/scss';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -283,3 +284,4 @@ button {
 .atropos-highlight {
   border-radius: 1rem;
 }
+

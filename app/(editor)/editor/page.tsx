@@ -13,6 +13,8 @@ import type { ExportQuality, Tool, BackgroundTab, VideoCanvasHandle, BackgroundC
 import type { TrimRange } from "@/types/timeline.types";
 import type { MockupConfig } from "@/types/mockup.types";
 import type { EditorState } from "@/types/editor-state.types";
+import type { CursorConfig, CursorRecordingData } from "@/types/cursor.types";
+import { DEFAULT_CURSOR_CONFIG, EMPTY_CURSOR_DATA } from "@/types/cursor.types";
 import { createInitialEditorState } from "@/types/editor-state.types";
 import { DEFAULT_MOCKUP_CONFIG, getMockupDefaultConfig } from "@/types/mockup.types";
 import type { CanvasElement } from "@/types/canvas-elements.types";
@@ -198,6 +200,11 @@ export default function Editor() {
     const [masterVolume, setMasterVolume] = useState<number>(1);
     const [selectedAudioTrackId, setSelectedAudioTrackId] = useState<string | null>(null);
 
+    // Cursor state
+    const [cursorConfig, setCursorConfig] = useState<CursorConfig>(DEFAULT_CURSOR_CONFIG);
+    const [cursorData, setCursorData] = useState<CursorRecordingData>(EMPTY_CURSOR_DATA);
+    const [isRecordedVideo, setIsRecordedVideo] = useState<boolean>(false);
+
     // Audio trim modal state
     const [autoTrimModalOpen, setAutoTrimModalOpen] = useState(false);
     const [pendingAudioUpload, setPendingAudioUpload] = useState<{
@@ -281,7 +288,6 @@ export default function Editor() {
         }
     }, [audioTracks]);
 
-    // Cleanup audio elements on unmount
     useEffect(() => {
         const elementsRef = audioElementsRef.current;
         return () => {
@@ -293,12 +299,6 @@ export default function Editor() {
         };
     }, []);
 
-    // ====================
-    // Undo/Redo Sync - Bidirectional state synchronization
-    // ====================
-
-    // Sync individual states → editorState (for history tracking)
-    // Debounced to avoid creating history entries on every keystroke
     const updateEditorStateDebounced = useRef<NodeJS.Timeout | null>(null);
     useEffect(() => {
         if (updateEditorStateDebounced.current) {
@@ -608,6 +608,11 @@ export default function Editor() {
         setMasterVolume(volume);
     }, []);
 
+    // Cursor config change handler
+    const handleCursorConfigChange = useCallback((config: Partial<CursorConfig>) => {
+        setCursorConfig(prev => ({ ...prev, ...config }));
+    }, []);
+
     const handleSelectAudioTrack = useCallback((trackId: string | null) => {
         setSelectedAudioTrackId(trackId);
         // Clear zoom fragment selection when selecting audio track
@@ -754,6 +759,20 @@ export default function Editor() {
                                 setVideoHasAudioTrack(hasAudio);
                                 if (!hasAudio) setMuteOriginalAudio(true);
                             });
+                        }
+
+                        // Load cursor data if available (only for recorded videos)
+                        if ('isRecordedVideo' in videoToLoad && videoToLoad.isRecordedVideo) {
+                            setIsRecordedVideo(true);
+                            if ('cursorData' in videoToLoad && videoToLoad.cursorData) {
+                                setCursorData(videoToLoad.cursorData);
+                            } else {
+                                setCursorData(EMPTY_CURSOR_DATA);
+                            }
+                        } else {
+                            // Uploaded video - no cursor data
+                            setIsRecordedVideo(false);
+                            setCursorData(EMPTY_CURSOR_DATA);
                         }
 
                         // Clear undo/redo history when loading a new video
@@ -1314,6 +1333,11 @@ export default function Editor() {
                                         onMasterVolumeChange={handleMasterVolumeChange}
                                         videoDuration={videoDuration}
                                         videoHasAudioTrack={videoHasAudioTrack}
+                                        // Cursor props
+                                        cursorConfig={cursorConfig}
+                                        cursorData={cursorData}
+                                        isRecordedVideo={isRecordedVideo}
+                                        onCursorConfigChange={handleCursorConfigChange}
                                     />
                                 </Suspense>
                             </motion.div>
@@ -1395,6 +1419,9 @@ export default function Editor() {
                         selectedElementId={selectedElementId}
                         onElementUpdate={updateCanvasElement}
                         onElementSelect={selectCanvasElement}
+                        // Cursor overlay props
+                        cursorConfig={cursorConfig}
+                        cursorData={cursorData}
                         onEnded={() => {
                             setIsPlaying(false);
                             justEndedRef.current = true;
@@ -1521,6 +1548,11 @@ export default function Editor() {
                 onMasterVolumeChange={handleMasterVolumeChange}
                 videoDuration={videoDuration}
                 videoHasAudioTrack={videoHasAudioTrack}
+                // Cursor props
+                cursorConfig={cursorConfig}
+                cursorData={cursorData}
+                isRecordedVideo={isRecordedVideo}
+                onCursorConfigChange={handleCursorConfigChange}
             />
 
             <Suspense fallback={null}>

@@ -1,7 +1,8 @@
 import type { ZoomFragment } from "./zoom.types";
 import type { CanvasElement } from "./canvas-elements.types";
+import type { CursorConfig, CursorRecordingData } from "./cursor.types";
 
-export type Tool = "screenshot" | "elements" | "audio" | "zoom" | "mockup";
+export type Tool = "screenshot" | "elements" | "audio" | "zoom" | "mockup" | "cursor";
 
 export type BackgroundTab = "wallpaper" | "image" | "color";
 
@@ -91,4 +92,7 @@ export interface VideoCanvasProps {
     selectedElementId?: string | null;
     onElementUpdate?: (id: string, updates: Partial<CanvasElement>) => void;
     onElementSelect?: (id: string | null) => void;
+    // Cursor overlay props
+    cursorConfig?: CursorConfig;
+    cursorData?: CursorRecordingData;
 }
