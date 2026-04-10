@@ -146,3 +146,7 @@ Abre [http://localhost:3000](http://localhost:3000)
 
 ## ☁️ ¿Cómo has utilizado CubePath?
 CubePath se utilizó para el despliegue y hosting de la aplicación. openvid corre completamente en el navegador (FFmpeg.wasm + Canvas API), por lo que CubePath sirve la app Next.js sin necesidad de backend propio, todo el procesamiento de video ocurre del lado del cliente.
+
+## 💬 Comunidad
+¡Cualquier contribución es bienvenida! Únete a nuestro servidor de **Discord** para coordinar ideas:
+[Invítame a Discord](https://discord.gg/f8KEyceS)
