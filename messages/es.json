@@ -7,7 +7,8 @@
     "login": "Iniciar sesión",
     "logout": "Cerrar sesión",
     "loggingOut": "Cerrando sesión...",
-    "menu": "Menú"
+    "menu": "Menú",
+    "screen": "Grabar"
   },
   "footer": {
     "description": "Aplicación moderna para la <recording>grabación de pantalla</recording> y la <editing>edición de vídeo</editing>. Diseñada para la web. Sin instalaciones, sin esperas y directamente en tu navegador.",
@@ -181,14 +182,19 @@
     }
   },
   "hero": {
-    "title": "Grabación de <screen>pantalla</screen>",
-    "titleHighlight": "edita en segundos",
-    "description": "Añade zooms suaves, mockups, personaliza fondos y exporta demos profesionales sin editores complejos.",
+    "title": "Crea demos y <screen>pantalla</screen>",
+    "titleHighlight": "en calidad 4K",
+    "description": "Añade zooms suaves, mockups, personaliza fondos, cámara, audio, elementos y exporta demos profesionales.",
     "uploadButton": "Subir video",
     "uploadButtonDragging": "Suelta tu video aquí",
     "uploadButtonUploading": "Subiendo...",
     "recordButton": "Grabar pantalla",
-    "uploadHint": "Arrastra un video o haz clic para seleccionar"
+    "uploadHint": "Arrastra un video o haz clic para seleccionar",
+    "goToVideoEditor": "Ir al editor de video",
+    "uploadPhotoButton": "Subir foto",
+    "uploadPhotoDragging": "Suelta tu foto aquí",
+    "uploadPhotoUploading": "Subiendo...",
+    "goToPhotoEditor": "Ir al editor de fotos"
   },
   "recording": {
     "steps": {
@@ -284,7 +290,11 @@
       "dragging": "¡Suelta el video aquí!",
       "button": "Seleccionar archivo",
       "uploading": "Subiendo...",
-      "formats": "MP4, WebM, MOV o MKV"
+      "formats": "MP4, WebM, MOV o MKV",
+      "titleImage": "Haz clic para subir",
+      "subtitleImage": "o arrastra tu imagen",
+      "draggingImage": "¡Suelta la imagen aquí!",
+      "formatsImage": "JPG, PNG, WebP o GIF"
     }
   },
   "notFound": {
@@ -462,6 +472,10 @@
       "camera": {
         "title": "Cámara en pantalla",
         "description": "Superpón la grabación de tu webcam con recortes circulares"
+      },
+      "history": {
+        "title": "Historial de imágenes",
+        "description": "Accede a tus capturas anteriores para reutilizarlas o editarlas."
       }
     },
     "recording": {
@@ -481,6 +495,16 @@
     },
     "alerts": {
       "mobile": "La captura de pantalla no está soportada en móviles. Usa tu computadora."
+    },
+    "photo": {
+      "captureTooltip": "Capturar imagen",
+      "capturing": "Capturando imagen...",
+      "capture": "Capturar",
+      "uploadTooltip": "Subir imagen personalizada",
+      "upload": "Subir",
+      "libraryTooltip": "Tus imágenes",
+      "library": "Historial",
+      "dropHere": "Suelta aquí"
     }
   },
   "wallpapers": {
@@ -666,13 +690,6 @@
         "endLabel": "FIN"
       }
     },
-    "effect3d": {
-      "title": "Efecto 3D",
-      "subtitle": "Perspectiva con profundidad",
-      "intensity": "Intensidad",
-      "direction": "Dirección de perspectiva",
-      "directionHint": "Click para elegir dirección de inclinación"
-    },
     "sliders": {
       "zoomLevel": "Nivel de zoom",
       "transitionSpeed": "Velocidad de transición"
@@ -681,6 +698,11 @@
       "fragmentDuration": "Duración del fragmento",
       "zoomFactor": "Factor de zoom",
       "transitionDuration": "Duración de transición"
+    },
+    "effect3d": {
+      "intensity": "Intensidad",
+      "direction": "Dirección de perspectiva",
+      "directionHint": "Click para elegir dirección de inclinación"
     }
   },
   "zoomGlobalConfig": {
@@ -776,6 +798,227 @@
           "desc": "1280 × 720 • Loop sin audio"
         }
       }
+    },
+    "photoMode": {
+      "title": "Modo de edición de imagen",
+      "description": "Ajusta el fondo, mockups y elementos para personalizar tu imagen",
+      "previewLabel": "Previsualizaciones 3D",
+      "views": "vistas"
+    },
+    "imagesLibrary": {
+      "title": "Mis Imágenes",
+      "project": "proyecto",
+      "projects": "proyectos",
+      "loading": "Cargando biblioteca...",
+      "current": "Actual",
+      "delete": "Eliminar",
+      "confirmDelete": "¿Confirmar?",
+      "empty": {
+        "title": "Biblioteca vacía",
+        "description": "Tus proyectos de imagen aparecerán aquí una vez que los guardes."
+      },
+      "time": {
+        "justNow": "Ahora mismo",
+        "minutesAgo": "{count, plural, =1 {Hace 1 minuto} other {Hace # minutos}}",
+        "hoursAgo": "{count, plural, =1 {Hace 1 hora} other {Hace # horas}}",
+        "daysAgo": "{count, plural, =1 {Hace 1 día} other {Hace # días}}"
+      }
+    },
+    "exportImage": {
+      "button": "Exportar",
+      "title": "Exportar Imagen",
+      "transparent": "Transparente",
+      "recommended": "Recomendado",
+      "noTransparency": "Sin transparencia",
+      "transparentInfo": "El fondo transparente solo se mantiene en formatos PNG y WebP.",
+      "presets": {
+        "png4x": {
+          "label": "PNG 4x (Ultra)"
+        },
+        "png2x": {
+          "label": "PNG 2x (Retina)"
+        },
+        "pngOriginal": {
+          "label": "PNG Original"
+        },
+        "webpHigh": {
+          "label": "WebP Alta",
+          "description": "Calidad 95% — Mejor compresión"
+        },
+        "jpegHigh": {
+          "label": "JPEG Alta",
+          "description": "Calidad 95% — Tamaño equilibrado"
+        },
+        "webpMedium": {
+          "label": "WebP Media",
+          "description": "Calidad 80% — Optimizado para web"
+        },
+        "jpegMedium": {
+          "label": "JPEG Media",
+          "description": "Calidad 80% — Tamaño reducido"
+        }
+      }
+    },
+    "effect3d": {
+      "title": "Efecto 3D",
+      "subtitle": "Perspectiva con profundidad",
+      "intensity": "Intensidad",
+      "direction": "Dirección de perspectiva",
+      "directionHint": "Click para elegir dirección de inclinación",
+      "perspective": "Perspectiva",
+      "scale": "Escala",
+      "rotation": "Rotación 3D",
+      "clickToAdjust": "Haz clic para ajustar",
+      "rotationHint": "Usa el panel para definir los ángulos",
+      "rotateZ": "Giro (Eje Z)",
+      "verticalPosition": "Desplazamiento Vertical",
+      "reset": "Restablecer valores"
+    },
+    "cropper": {
+      "button": "Recortar imagen",
+      "tooltip": "Ajustar dimensiones y recorte"
+    }
+  },
+  "historyMenu": {
+    "title": "Historial de imágenes",
+    "items": "imágenes",
+    "loading": "Cargando historial...",
+    "upload": {
+      "drop": "Suelta la imagen aquí",
+      "dragOrClick": "Arrastra o haz clic para subir"
+    },
+    "empty": {
+      "title": "Sin imágenes aún",
+      "description": "Sube o captura imágenes para verlas aquí"
+    },
+    "time": {
+      "justNow": "Ahora mismo",
+      "hoursAgo": "{hours, plural, =1 {Hace 1 hora} other {Hace # horas}}",
+      "yesterday": "Ayer",
+      "daysAgo": "{days, plural, =1 {Hace 1 día} other {Hace # días}}"
+    },
+    "actions": {
+      "addToCanvas": "Añadir al canvas",
+      "delete": "Eliminar del historial"
+    }
+  },
+  "playerControls": {
+    "toolbar": "Controles de reproducción",
+    "fullscreen": {
+      "enter": "Pantalla completa (F)",
+      "exit": "Salir de pantalla completa (F)"
+    },
+    "zoom": {
+      "group": "Zoom de la línea de tiempo",
+      "out": "Alejar (↓)",
+      "in": "Acercar (↑)",
+      "label": "Zoom: {level}×"
+    },
+    "transport": {
+      "group": "Controles de transporte",
+      "currentTime": "Tiempo actual: {time}",
+      "totalTime": "Duración total: {time}",
+      "backward": "Retroceder 5s (← o J)",
+      "forward": "Avanzar 5s (→ o L)",
+      "play": "Reproducir (Espacio o K)",
+      "pause": "Pausar (Espacio o K)"
+    },
+    "cropper": {
+      "tooltip": "Abrir recortador de video",
+      "button": "Recortar"
+    }
+  },
+  "aspectRatioSelect": {
+    "tooltip": "Seleccionar proporción de aspecto",
+    "labels": {
+      "auto": "Auto",
+      "custom": "Personalizado",
+      "youtube": "YouTube",
+      "tiktok": "TikTok",
+      "instagram": "Instagram"
+    },
+    "customSection": {
+      "title": "Personalizado",
+      "width": "Ancho",
+      "height": "Alto",
+      "apply": "Aplicar medidas"
+    }
+  },
+  "videoCropper": {
+    "title": "Recortar video",
+    "noVideo": "Sin video",
+    "sections": {
+      "ratio": "Proporción",
+      "area": "Área"
+    },
+    "labels": {
+      "x": "X",
+      "y": "Y",
+      "width": "W",
+      "height": "H"
+    },
+    "buttons": {
+      "reset": "Restablecer",
+      "apply": "Aplicar recorte"
+    }
+  },
+  "timeline": {
+    "noSpace": "Sin espacio"
+  },
+  "audioMenu": {
+    "title": "Audio",
+    "originalAudio": "Audio original",
+    "muted": "Silenciado",
+    "active": "Activo",
+    "masterVolume": "Volumen maestro",
+    "uploadButton": "Subir audio",
+    "uploadHint": "MP3, WAV, OGG, AAC, M4A (máx 10MB)",
+    "timelineTracks": "PISTAS EN LÍNEA DE TIEMPO ({count})",
+    "start": "Inicio",
+    "duration": "Duración",
+    "exceedsDuration": "Excede duración del video",
+    "trimAction": "Recortar audio",
+    "deleteAction": "Eliminar audio",
+    "noTracks": "No hay pistas de audio",
+    "noTracksHint": "Sube un archivo de audio para añadirlo automáticamente a la línea de tiempo",
+    "errors": {
+      "unsupportedFormat": "Formato de audio no soportado. Por favor usa MP3, WAV, OGG, AAC o M4A.",
+      "fileTooLarge": "El archivo es demasiado grande. El tamaño máximo es 10MB."
+    }
+  },
+  "exportOverlay": {
+    "processing": "Procesando Video",
+    "status": {
+      "preparing": "Preparando entorno de renderizado",
+      "capturing": "Capturando frames PNG (Paso 1 de 2)",
+      "encoding": "Codificando secuencia de video",
+      "encodingWebM": "Codificando video WebM (Paso 2 de 2)",
+      "finalizing": "Empaquetando archivos finales"
+    },
+    "warnings": {
+      "performance": "Para optimizar los recursos de la GPU y CPU, <highlight>evita minimizar esta ventana</highlight>. El proceso es intensivo y requiere prioridad del sistema.",
+      "transparency": "Este proceso puede tardar más de lo habitual. La exportación <highlight>WebM con transparencia</highlight> requiere procesamiento adicional por CPU."
+    },
+    "actions": {
+      "cancel": "Detener exportación"
+    }
+  },
+  "photoPicker": {
+    "tooltip": "Buscar fondos (Unsplash, Pexels, Pixabay)",
+    "title": "Fondos",
+    "statusDiscovering": "Descubriendo",
+    "searchPlaceholder": "Buscar fondos...",
+    "noResults": "Sin resultados",
+    "footerPhotosBy": "Fotos de",
+    "footerAnd": " y ",
+    "badges": {
+      "blur_gradient": "Degradado blur",
+      "dark_wallpaper": "Fondo oscuro",
+      "minimal_abstract": "Abstracto minimalista",
+      "neon_city": "Ciudad neón",
+      "nature_landscape": "Paisaje natural",
+      "aurora_borealis": "Aurora boreal",
+      "gradient_wallpaper": "Fondo degradado"
     }
   }
 }

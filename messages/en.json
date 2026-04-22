@@ -7,7 +7,8 @@
     "login": "Sign in",
     "logout": "Sign out",
     "loggingOut": "Signing out...",
-    "menu": "Menu"
+    "menu": "Menu",
+    "screen": "Record"
   },
   "footer": {
     "description": "Modern application for <recording>screen recording</recording> and <editing>video editing</editing>. Designed for the web. No installations, no waiting, directly in your browser.",
@@ -185,14 +186,19 @@
     }
   },
   "hero": {
-    "title": "<screen>screen</screen> recording,",
-    "titleHighlight": "edit in seconds",
-    "description": "Add smooth zooms, mockups, customize backgrounds and export professional demos without complex editors.",
+    "title": "Create demos and <screen>screen</screen>",
+    "titleHighlight": "in 4K quality  ",
+    "description": "Add smooth zooms, mockups, customize backgrounds, camera, audio, elements, and export professional demos.",
     "uploadButton": "Upload video",
     "uploadButtonDragging": "Drop your video here",
     "uploadButtonUploading": "Uploading...",
     "recordButton": "Record screen",
-    "uploadHint": "Drag a video or click to select"
+    "uploadHint": "Drag a video or click to select",
+    "goToVideoEditor": "Go to video editor",
+    "uploadPhotoButton": "Upload photo",
+    "uploadPhotoDragging": "Drop your photo here",
+    "uploadPhotoUploading": "Uploading...",
+    "goToPhotoEditor": "Go to photo editor"
   },
   "recording": {
     "steps": {
@@ -288,7 +294,11 @@
       "dragging": "Drop the video here!",
       "button": "Select file",
       "uploading": "Uploading...",
-      "formats": "MP4, WebM, MOV or MKV"
+      "formats": "MP4, WebM, MOV or MKV",
+      "titleImage": "Click to upload",
+      "subtitleImage": "or drag your image",
+      "draggingImage": "Drop the image here!",
+      "formatsImage": "JPG, PNG, WebP or GIF"
     }
   },
   "notFound": {
@@ -466,6 +476,10 @@
       "camera": {
         "title": "On-screen Camera",
         "description": "Overlay your webcam recording with circular crops"
+      },
+       "history": {
+        "title": "Image History",
+        "description": "Access your previous captures to reuse or edit them."
       }
     },
     "recording": {
@@ -485,6 +499,58 @@
     },
     "alerts": {
       "mobile": "Screen capture is not supported on mobile. Use your computer."
+    },
+    "photo": {
+      "captureTooltip": "Capture image",
+      "capturing": "Capturing image...",
+      "capture": "Capture",
+      "uploadTooltip": "Upload custom image",
+      "upload": "Upload",
+      "libraryTooltip": "Your images",
+      "library": "Library",
+      "dropHere": "Drop hereks"
+    },
+    "imagesLibrary": {
+      "title": "My Images",
+      "project": "project",
+      "projects": "projects",
+      "loading": "Loading library...",
+      "current": "Current",
+      "delete": "Delete",
+      "confirmDelete": "Confirm?",
+      "empty": {
+        "title": "Library empty",
+        "description": "Your image projects will appear here once you save them."
+      },
+      "time": {
+        "justNow": "Just now",
+        "minutesAgo": "{count, plural, =1 {1 minute ago} other {# minutes ago}}",
+        "hoursAgo": "{count, plural, =1 {1 hour ago} other {# hours ago}}",
+        "daysAgo": "{count, plural, =1 {1 day ago} other {# days ago}}"
+      }
+    }
+  },
+  "historyMenu": {
+    "title": "Image History",
+    "items": "images",
+    "loading": "Loading history...",
+    "upload": {
+      "drop": "Drop image here",
+      "dragOrClick": "Drag or click to upload"
+    },
+    "empty": {
+      "title": "No images yet",
+      "description": "Upload or capture images to see them here"
+    },
+    "time": {
+      "justNow": "Just now",
+      "hoursAgo": "{hours, plural, =1 {1 hour ago} other {# hours ago}}",
+      "yesterday": "Yesterday",
+      "daysAgo": "{days, plural, =1 {1 day ago} other {# days ago}}"
+    },
+    "actions": {
+      "addToCanvas": "Add to canvas",
+      "delete": "Delete from history"
     }
   },
   "wallpapers": {
@@ -670,13 +736,6 @@
         "endLabel": "END"
       }
     },
-    "effect3d": {
-      "title": "3D Effect",
-      "subtitle": "Perspective with depth",
-      "intensity": "Intensity",
-      "direction": "Perspective direction",
-      "directionHint": "Click to choose tilt direction"
-    },
     "sliders": {
       "zoomLevel": "Zoom level",
       "transitionSpeed": "Transition speed"
@@ -780,6 +839,185 @@
           "desc": "1280 × 720 • Loop without audio"
         }
       }
+    },
+    "photoMode": {
+      "title": "Image editing mode",
+      "description": "Adjust the background, mockups and elements to customize your image",
+      "previewLabel": "3D Previews",
+      "views": "views"
+    },
+    "exportImage": {
+      "button": "Export",
+      "title": "Export Image",
+      "transparent": "Transparent",
+      "recommended": "Recommended",
+      "noTransparency": "No transparency",
+      "transparentInfo": "Transparent background is only preserved in PNG and WebP formats.",
+      "presets": {
+        "png4x": {
+          "label": "PNG 4x (Ultra)"
+        },
+        "png2x": {
+          "label": "PNG 2x (Retina)"
+        },
+        "pngOriginal": {
+          "label": "PNG Original"
+        },
+        "webpHigh": {
+          "label": "WebP High",
+          "description": "95% Quality — Best compression"
+        },
+        "jpegHigh": {
+          "label": "JPEG High",
+          "description": "95% Quality — Balanced size"
+        },
+        "webpMedium": {
+          "label": "WebP Medium",
+          "description": "80% Quality — Web optimized"
+        },
+        "jpegMedium": {
+          "label": "JPEG Medium",
+          "description": "80% Quality — Small file size"
+        }
+      }
+    },
+    "effect3d": {
+      "title": "Efecto 3D",
+      "subtitle": "Perspectiva con profundidad",
+      "intensity": "Intensidad",
+      "direction": "Dirección de perspectiva",
+      "directionHint": "Click para elegir dirección de inclinación",
+      "perspective": "Perspectiva",
+      "scale": "Escala",
+      "rotation": "Rotación 3D",
+      "clickToAdjust": "Haz clic para ajustar",
+      "rotationHint": "Usa el panel para definir los ángulos",
+      "rotateZ": "Giro (Eje Z)",
+      "verticalPosition": "Desplazamiento Vertical",
+      "reset": "Restablecer valores"
+    },
+    "cropper": {
+      "button": "Recortar imagen",
+      "tooltip": "Ajustar dimensiones y recorte"
+    }
+  },
+  "playerControls": {
+    "toolbar": "Playback controls",
+    "fullscreen": {
+      "enter": "Full screen (F)",
+      "exit": "Exit full screen (F)"
+    },
+    "zoom": {
+      "group": "Timeline zoom",
+      "out": "Zoom out (↓)",
+      "in": "Zoom in (↑)",
+      "label": "Timeline zoom: {level}×"
+    },
+    "transport": {
+      "group": "Transport controls",
+      "currentTime": "Current time: {time}",
+      "totalTime": "Total duration: {time}",
+      "backward": "Backward 5s (← or J)",
+      "forward": "Forward 5s (→ or L)",
+      "play": "Play (Space or K)",
+      "pause": "Pause (Space or K)"
+    },
+    "cropper": {
+      "tooltip": "Open video cropper",
+      "button": "Crop"
+    }
+  },
+  "aspectRatioSelect": {
+    "tooltip": "Select aspect ratio",
+    "labels": {
+      "auto": "Auto",
+      "custom": "Custom",
+      "youtube": "YouTube",
+      "tiktok": "TikTok",
+      "instagram": "Instagram"
+    },
+    "customSection": {
+      "title": "Custom",
+      "width": "Width",
+      "height": "Height",
+      "apply": "Apply dimensions"
+    }
+  },
+  "videoCropper": {
+    "title": "Crop video",
+    "noVideo": "No video",
+    "sections": {
+      "ratio": "Aspect Ratio",
+      "area": "Area"
+    },
+    "labels": {
+      "x": "X",
+      "y": "Y",
+      "width": "W",
+      "height": "H"
+    },
+    "buttons": {
+      "reset": "Reset",
+      "apply": "Apply crop"
+    }
+  },
+  "timeline": {
+    "noSpace": "No space"
+  },
+  "audioMenu": {
+    "title": "Audio",
+    "originalAudio": "Original audio",
+    "muted": "Muted",
+    "active": "Active",
+    "masterVolume": "Master volume",
+    "uploadButton": "Upload audio",
+    "uploadHint": "MP3, WAV, OGG, AAC, M4A (max 10MB)",
+    "timelineTracks": "TIMELINE TRACKS ({count})",
+    "start": "Start",
+    "duration": "Duration",
+    "exceedsDuration": "Exceeds video duration",
+    "trimAction": "Trim audio",
+    "deleteAction": "Delete audio",
+    "noTracks": "No audio tracks",
+    "noTracksHint": "Upload an audio file to automatically add it to the timeline",
+    "errors": {
+      "unsupportedFormat": "Unsupported audio format. Please use MP3, WAV, OGG, AAC, or M4A.",
+      "fileTooLarge": "File is too large. Maximum size is 10MB."
+    }
+  },
+  "exportOverlay": {
+    "processing": "Processing Video",
+    "status": {
+      "preparing": "Preparing rendering environment",
+      "capturing": "Capturing PNG frames (Step 1 of 2)",
+      "encoding": "Encoding video sequence",
+      "encodingWebM": "Encoding WebM video (Step 2 of 2)",
+      "finalizing": "Packaging final files"
+    },
+    "warnings": {
+      "performance": "To optimize GPU and CPU resources, <highlight>avoid minimizing this window</highlight>. The process is intensive and requires system priority.",
+      "transparency": "This process may take longer than usual. <highlight>WebM export with transparency</highlight> requires additional CPU processing."
+    },
+    "actions": {
+      "cancel": "Stop export"
+    }
+  },
+  "photoPicker": {
+    "tooltip": "Search backgrounds (Unsplash, Pexels, Pixabay)",
+    "title": "Backgrounds",
+    "statusDiscovering": "Discovering",
+    "searchPlaceholder": "Search backgrounds...",
+    "noResults": "No results",
+    "footerPhotosBy": "Photos by",
+    "footerAnd": " and ",
+    "badges": {
+      "blur_gradient": "Blur gradient",
+      "dark_wallpaper": "Dark wallpaper",
+      "minimal_abstract": "Minimal abstract",
+      "neon_city": "Neon city",
+      "nature_landscape": "Nature landscape",
+      "aurora_borealis": "Aurora borealis",
+      "gradient_wallpaper": "Gradient wallpaper"
     }
   }
 }
