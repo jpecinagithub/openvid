@@ -31,7 +31,7 @@ export const DEFAULT_AUDIO_CONFIG: AudioConfig = {
 };
 
 export const SUPPORTED_AUDIO_FORMATS = [
-    'audio/mpeg', // MP3
+    'audio/mpeg',
     'audio/mp3',
     'audio/wav',
     'audio/wave',
@@ -53,3 +53,33 @@ export const SUPPORTED_AUDIO_EXTENSIONS = [
 export const MAX_AUDIO_FILE_SIZE = 50 * 1024 * 1024;
 
 export const MAX_AUDIO_TRACKS = 5;
+
+export interface AudioMenuProps {
+    audioTracks: AudioTrack[];
+    uploadedAudios: UploadedAudio[];
+    muteOriginalAudio: boolean;
+    masterVolume: number;
+    videoDuration: number;
+    onAudioUpload: (file: File) => void;
+    onUpdateAudioTrack: (trackId: string, updates: Partial<AudioTrack>) => void;
+    onDeleteAudioTrack: (trackId: string) => void;
+    onToggleMuteOriginalAudio: () => void;
+    onMasterVolumeChange: (volume: number) => void;
+}
+
+export const MIN_FRAGMENT_DURATION = 0.1;
+export const MIN_VISUAL_WIDTH_PX = 50;
+
+export interface AudioFragmentTrackItemProps {
+    track: AudioTrack;
+    audio: UploadedAudio | undefined;
+    isSelected: boolean;
+    contentWidth: number;
+    videoDuration: number;
+    otherTracks: AudioTrack[];
+    onSelect: () => void;
+    onUpdate: (updates: Partial<AudioTrack>) => void;
+    onDragStateChange?: (isDragging: boolean) => void;
+    onMouseEnter?: () => void;
+    onMouseLeave?: () => void;
+}
