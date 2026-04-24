@@ -17,6 +17,28 @@ function generateVideoId(): string {
   return `vid_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
 }
 
+// Delete the currentVideo record if it is older than 7 days.
+// openvidDB is only a recording→editor handoff cache; stale blobs waste storage.
+async function cleanupOldRecording(db: IDBDatabase): Promise<void> {
+  const SEVEN_DAYS_MS = 7 * 24 * 60 * 60 * 1000;
+  const cutoff = Date.now() - SEVEN_DAYS_MS;
+  return new Promise((resolve) => {
+    try {
+      const transaction = db.transaction("videos", "readwrite");
+      const store = transaction.objectStore("videos");
+      const getReq = store.get("currentVideo");
+      getReq.onsuccess = () => {
+        const record = getReq.result as { timestamp?: number } | undefined;
+        if (record && record.timestamp && record.timestamp < cutoff) {
+          store.delete("currentVideo");
+        }
+      };
+      transaction.oncomplete = () => resolve();
+      transaction.onerror = () => resolve();
+    } catch { resolve(); }
+  });
+}
+
 async function getDB(): Promise<IDBDatabase> {
   return new Promise((resolve, reject) => {
     const dbName = "openvidDB";
@@ -43,9 +65,13 @@ async function getDB(): Promise<IDBDatabase> {
             retryDb.createObjectStore(storeName);
           }
         };
-        retryRequest.onsuccess = () => resolve(retryRequest.result);
+        retryRequest.onsuccess = () => {
+          cleanupOldRecording(retryRequest.result).catch(() => {});
+          resolve(retryRequest.result);
+        };
         retryRequest.onerror = () => reject(retryRequest.error);
       } else {
+        cleanupOldRecording(db).catch(() => {});
         resolve(db);
       }
     };

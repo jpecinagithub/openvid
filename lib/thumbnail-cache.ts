@@ -12,6 +12,26 @@ export interface CachedThumbnailSet {
 
 let dbInstance: IDBDatabase | null = null;
 
+async function cleanupOldThumbnails(db: IDBDatabase): Promise<void> {
+    const SEVEN_DAYS_MS = 7 * 24 * 60 * 60 * 1000;
+    const cutoff = Date.now() - SEVEN_DAYS_MS;
+    return new Promise((resolve) => {
+        try {
+            const transaction = db.transaction(STORE_NAME, "readwrite");
+            const store = transaction.objectStore(STORE_NAME);
+            const index = store.index("createdAt");
+            const range = IDBKeyRange.upperBound(cutoff);
+            const request = index.openCursor(range);
+            request.onsuccess = (event) => {
+                const cursor = (event.target as IDBRequest<IDBCursorWithValue | null>).result;
+                if (cursor) { cursor.delete(); cursor.continue(); }
+            };
+            transaction.oncomplete = () => resolve();
+            transaction.onerror = () => resolve();
+        } catch { resolve(); }
+    });
+}
+
 async function openDB(): Promise<IDBDatabase> {
     if (dbInstance) return dbInstance;
 
@@ -21,6 +41,7 @@ async function openDB(): Promise<IDBDatabase> {
         request.onerror = () => reject(request.error);
         request.onsuccess = () => {
             dbInstance = request.result;
+            cleanupOldThumbnails(dbInstance).catch(() => {});
             resolve(request.result);
         };
 
@@ -53,7 +74,6 @@ export async function getCachedThumbnails(
             request.onsuccess = () => {
                 const result = request.result;
                 if (result) {
-                    // Check if cache is not too old (7 days)
                     const maxAge = 7 * 24 * 60 * 60 * 1000;
                     if (Date.now() - result.createdAt < maxAge) {
                         resolve(result);

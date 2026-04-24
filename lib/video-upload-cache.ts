@@ -17,6 +17,26 @@ export interface CachedUploadedVideo {
 
 let dbInstance: IDBDatabase | null = null;
 
+async function cleanupOldUploadCache(db: IDBDatabase): Promise<void> {
+    const SEVEN_DAYS_MS = 7 * 24 * 60 * 60 * 1000;
+    const cutoff = Date.now() - SEVEN_DAYS_MS;
+    return new Promise((resolve) => {
+        try {
+            const transaction = db.transaction(STORE_NAME, "readwrite");
+            const store = transaction.objectStore(STORE_NAME);
+            const getReq = store.get(SINGLE_VIDEO_KEY);
+            getReq.onsuccess = () => {
+                const record = getReq.result as CachedUploadedVideo | undefined;
+                if (record && record.uploadedAt < cutoff) {
+                    store.delete(SINGLE_VIDEO_KEY);
+                }
+            };
+            transaction.oncomplete = () => resolve();
+            transaction.onerror = () => resolve();
+        } catch { resolve(); }
+    });
+}
+
 async function openDB(): Promise<IDBDatabase> {
     if (dbInstance) return dbInstance;
 
@@ -26,6 +46,7 @@ async function openDB(): Promise<IDBDatabase> {
         request.onerror = () => reject(request.error);
         request.onsuccess = () => {
             dbInstance = request.result;
+            cleanupOldUploadCache(dbInstance).catch(() => {});
             resolve(request.result);
         };
 

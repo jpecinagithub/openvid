@@ -38,6 +38,26 @@ interface ExtendedVideoElement extends HTMLVideoElement {
 
 let dbInstance: IDBDatabase | null = null;
 
+async function cleanupOldLibraryEntries(db: IDBDatabase): Promise<void> {
+    const SIXTY_DAYS_MS = 60 * 24 * 60 * 60 * 1000;
+    const cutoff = Date.now() - SIXTY_DAYS_MS;
+    return new Promise((resolve) => {
+        try {
+            const transaction = db.transaction(STORE_NAME, "readwrite");
+            const store = transaction.objectStore(STORE_NAME);
+            const index = store.index("uploadedAt");
+            const range = IDBKeyRange.upperBound(cutoff);
+            const request = index.openCursor(range);
+            request.onsuccess = (event) => {
+                const cursor = (event.target as IDBRequest<IDBCursorWithValue | null>).result;
+                if (cursor) { cursor.delete(); cursor.continue(); }
+            };
+            transaction.oncomplete = () => resolve();
+            transaction.onerror = () => resolve();
+        } catch { resolve(); }
+    });
+}
+
 function generateVideoId(): string {
     return `uploaded_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
 }
@@ -51,6 +71,7 @@ async function openDB(): Promise<IDBDatabase> {
         request.onerror = () => reject(request.error);
         request.onsuccess = () => {
             dbInstance = request.result;
+            cleanupOldLibraryEntries(dbInstance).catch(() => {});
             resolve(request.result);
         };
 
