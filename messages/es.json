@@ -930,6 +930,26 @@
     },
     "hoverTooltip": {
       "paste": "Pegar"
+    },
+    "layerPanel": {
+      "tooltips": {
+        "show": "Mostrar",
+        "hide": "Ocultar",
+        "lock": "Bloquear",
+        "unlock": "Desbloquear",
+        "delete": "Eliminar",
+        "deleteGroup": "Eliminar grupo",
+        "showLayers": "Mostrar panel de capas",
+        "hideLayers": "Ocultar panel de capas",
+        "groupSelected": "Agrupar seleccionadas",
+        "ungroup": "Desagrupar"
+      },
+      "layers": "Capas",
+      "noLayers": "Sin capas",
+      "group": "Grupo",
+      "selected": "selec.",
+      "groupAction": "Agrupar",
+      "ungroupAction": "Desag."
     }
   },
   "historyMenu": {
