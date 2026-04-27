@@ -976,6 +976,26 @@
     },
     "hoverTooltip": {
       "paste": "Paste"
+    },
+    "layerPanel": {
+      "tooltips": {
+        "show": "Show",
+        "hide": "Hide",
+        "lock": "Lock",
+        "unlock": "Unlock",
+        "delete": "Delete",
+        "deleteGroup": "Delete group",
+        "showLayers": "Show layers panel",
+        "hideLayers": "Hide layers panel",
+        "groupSelected": "Group selected",
+        "ungroup": "Ungroup"
+      },
+      "layers": "Layers",
+      "noLayers": "No layers",
+      "group": "Group",
+      "selected": "selected",
+      "groupAction": "Group",
+      "ungroupAction": "Ungroup"
     }
   },
   "playerControls": {
