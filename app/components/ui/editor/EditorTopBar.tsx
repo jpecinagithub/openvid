@@ -10,6 +10,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { TooltipAction } from "@/components/ui/tooltip-action";
+import { Link } from "@/navigation";
 
 interface ImageExportProgress {
     status: "idle" | "preparing" | "rendering" | "complete" | "error";
@@ -96,7 +97,17 @@ export function EditorTopBar({
                 </div>
             )}
 
-            <div className="flex-1"></div>
+            <div className="flex-1 flex items-center">
+                <TooltipAction label={t("auth.home")}>
+                    <Link
+                        href="/"
+                        className="flex items-center gap-2 text-white/60 hover:text-white transition-colors"
+                        aria-label={t("auth.home")}
+                    >
+                        <Icon icon="lucide:arrow-left" width="18" />
+                    </Link>
+                </TooltipAction>
+            </div>
 
             <div className="flex items-center ml-auto">
                 <div className="flex items-center gap-2 border-r border-white/10 pr-3">
